@@ -1,0 +1,364 @@
+.ed-photo {
+  margin: 0;
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.ed-photo.is-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ed-photo-frame {
+  overflow: hidden;
+  background: #ddd4c4;
+}
+
+.ed-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ed-photo-feature .ed-photo-frame {
+  border-radius: 18px;
+  aspect-ratio: 4 / 5;
+  min-height: 280px;
+  box-shadow: 0 22px 40px rgba(62, 48, 24, 0.14);
+  transform: rotate(-1.8deg);
+}
+
+.ed-photo-feature {
+  max-width: 340px;
+}
+
+.ed-photo-crop .ed-photo-frame {
+  border-radius: 16px;
+  aspect-ratio: 5 / 4;
+  box-shadow: 0 16px 32px rgba(62, 48, 24, 0.12);
+}
+
+.ed-photo-polaroid {
+  width: min(220px, 100%);
+  padding: 10px 10px 14px;
+  background: #fffdf8;
+  border: 1px solid rgba(42, 38, 32, 0.08);
+  border-radius: 6px;
+  box-shadow: 0 14px 28px rgba(62, 48, 24, 0.12);
+  transform: translateY(18px) rotate(3deg);
+}
+
+.ed-photo-polaroid.is-in {
+  transform: rotate(3deg);
+}
+
+.ed-photo-polaroid .ed-photo-frame {
+  border-radius: 4px;
+  aspect-ratio: 1;
+}
+
+.ed-photo-polaroid figcaption {
+  margin-top: 10px;
+  font-family: var(--hand);
+  font-size: 1.2rem;
+  line-height: 1.2;
+  color: #5c564c;
+  text-align: center;
+}
+
+.ed-photo-tilt-left {
+  transform: translateY(18px) rotate(-4deg);
+}
+
+.ed-photo-tilt-left.is-in {
+  transform: rotate(-4deg);
+}
+
+.ed-collage {
+  --rot: 0deg;
+  position: relative;
+  width: min(100%, 440px);
+  height: 390px;
+  margin: 0 0 0 auto;
+  opacity: 0;
+  justify-self: end;
+}
+
+.ed-collage.is-in {
+  opacity: 1;
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ed-collage-marks {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  overflow: visible;
+  color: rgba(154, 122, 50, 0.7);
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.ed-collage-card {
+  position: absolute;
+  margin: 0;
+  padding: 8px 8px 12px;
+  background: #fffdf8;
+  border: 1px solid rgba(42, 38, 32, 0.08);
+  border-radius: 14px;
+  box-shadow: 0 16px 32px rgba(62, 48, 24, 0.14);
+}
+
+.ed-collage-card .ed-photo-frame {
+  border-radius: 10px;
+  aspect-ratio: 4 / 3;
+}
+
+.ed-collage-create .ed-photo-frame {
+  aspect-ratio: 5 / 4;
+}
+
+.ed-collage-card figcaption {
+  margin-top: 8px;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #9a7a32;
+  text-align: center;
+}
+
+.ed-collage-create {
+  --rot: -1.2deg;
+  width: 68%;
+  top: 18%;
+  left: 16%;
+  z-index: 2;
+  transform: rotate(var(--rot));
+}
+
+.ed-collage-study {
+  --rot: -5deg;
+  width: 44%;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  transform: rotate(var(--rot));
+}
+
+.ed-collage-build {
+  --rot: 4deg;
+  width: 46%;
+  right: 0;
+  bottom: 0;
+  left: auto;
+  top: auto;
+  z-index: 4;
+  transform: rotate(var(--rot));
+}
+
+.ed-collage.is-in .ed-collage-study {
+  animation: ed-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ed-collage.is-in .ed-collage-create {
+  animation: ed-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+}
+
+.ed-collage.is-in .ed-collage-build {
+  animation: ed-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.16s both;
+}
+
+.why-section,
+.curriculum-section,
+.who-section {
+  padding-top: 88px;
+  padding-bottom: 88px;
+}
+
+.why-compose,
+.curriculum-compose,
+.who-compose {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(280px, 1fr);
+  gap: 28px 36px;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.why-copy,
+.curriculum-copy,
+.who-copy {
+  min-width: 0;
+}
+
+.why-copy .section-intro,
+.curriculum-copy .section-intro,
+.who-copy .section-intro {
+  margin-top: 16px;
+}
+
+.why-copy .why-aside,
+.curriculum-copy .why-aside,
+.who-copy .why-aside {
+  margin: 22px 0 0;
+}
+
+.why-aside {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+@keyframes ed-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) rotate(var(--rot));
+  }
+  to {
+    opacity: 1;
+    transform: rotate(var(--rot));
+  }
+}
+
+.ed-row {
+  display: grid;
+  gap: 28px 40px;
+  align-items: start;
+}
+
+.program-story {
+  grid-template-columns: minmax(0, 1.05fr) minmax(220px, 0.7fr);
+  margin-bottom: 40px;
+}
+
+.program-story .program-lead {
+  margin: 0;
+}
+
+.program-story .ed-photo-feature {
+  justify-self: end;
+  margin-top: 28px;
+  margin-bottom: -36px;
+}
+
+.curriculum-moment {
+  display: flex;
+  justify-content: flex-end;
+  margin: -8px 0 28px;
+}
+
+.who-moment {
+  display: flex;
+  justify-content: flex-start;
+  margin: 8px 0 8px;
+}
+
+.who-moment .ed-photo {
+  margin-top: -28px;
+  margin-left: 12px;
+}
+
+.independence-story {
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.1fr);
+  margin-bottom: 28px;
+  align-items: center;
+}
+
+.apply-moment {
+  justify-self: center;
+}
+
+.ap-intro .ed-photo {
+  margin-top: 28px;
+}
+
+.hai-photo {
+  margin: 4px 0 22px;
+  max-width: 380px;
+}
+
+.lp-moment {
+  max-width: 520px;
+  margin: 0 0 36px;
+  transform: rotate(-1deg);
+}
+
+.lp-moment.is-in {
+  transform: rotate(-1deg);
+}
+
+@media (max-width: 900px) {
+  .program-story,
+  .independence-story,
+  .why-compose,
+  .curriculum-compose,
+  .who-compose {
+    grid-template-columns: 1fr;
+  }
+
+  .program-story .ed-photo-feature {
+    justify-self: start;
+    margin-top: 0;
+    margin-bottom: 0;
+    max-width: 280px;
+    order: -1;
+  }
+
+  .ed-collage {
+    width: min(100%, 400px);
+    height: 360px;
+    margin-inline: auto;
+    justify-self: center;
+  }
+
+  .who-moment {
+    justify-content: flex-end;
+  }
+
+  .who-moment .ed-photo {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .ed-collage {
+    width: 100%;
+    height: 320px;
+  }
+
+  .ed-collage-marks {
+    display: none;
+  }
+
+  .curriculum-moment,
+  .apply-moment {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ed-photo,
+  .ed-collage {
+    animation: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+
+  .ed-collage.is-in .ed-collage-study,
+  .ed-collage.is-in .ed-collage-build,
+  .ed-collage.is-in .ed-collage-create {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: rotate(var(--rot)) !important;
+  }
+}

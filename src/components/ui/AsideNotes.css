@@ -1,0 +1,117 @@
+.whisper {
+  margin: 0;
+  font-family: var(--hand);
+  font-size: 1.22rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  color: #8a6a28;
+}
+
+.mini-sticky {
+  display: inline-block;
+  margin: 0;
+  padding: 9px 12px;
+  max-width: 11rem;
+  font-family: var(--hand);
+  font-size: 1.12rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #4a3f30;
+  background: #f3e2b8;
+  box-shadow: 0 8px 18px rgba(62, 48, 24, 0.1);
+  transform: rotate(-3deg);
+}
+
+.note-hl {
+  font-style: normal;
+  font-weight: inherit;
+  background-image: linear-gradient(transparent 62%, rgba(232, 195, 106, 0.42) 62%);
+  box-decoration-break: clone;
+}
+
+.word-circle {
+  position: relative;
+  display: inline-block;
+  padding: 0 0.08em;
+}
+
+.word-circle-mark {
+  position: absolute;
+  left: -8%;
+  top: -6%;
+  width: 116%;
+  height: 118%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.word-circle-mark ellipse {
+  fill: none;
+  stroke: rgba(201, 162, 74, 0.72);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  transform: rotate(-4deg);
+  transform-origin: center;
+}
+
+.scribble-arrow {
+  display: block;
+  width: 64px;
+  height: 24px;
+  stroke: rgba(201, 162, 74, 0.7);
+  fill: none;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hero-whisper {
+  margin-top: 18px;
+}
+
+.program-aside {
+  display: flex;
+  justify-content: flex-end;
+  margin: -8px 0 28px;
+}
+
+.why-aside {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.projects-aside,
+.pathway-aside,
+.apply-whisper {
+  margin: 0 0 22px;
+}
+
+.section:not(.is-in) .whisper,
+.section:not(.is-in) .mini-sticky,
+.section:not(.is-in) .scribble-arrow {
+  opacity: 0;
+}
+
+.section.is-in .whisper,
+.section.is-in .mini-sticky,
+.section.is-in .scribble-arrow {
+  opacity: 1;
+  transition: opacity 0.7s ease 0.18s;
+}
+
+.hero:not(.is-static) .hero-whisper {
+  opacity: 0;
+  animation: hero-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.62s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section:not(.is-in) .whisper,
+  .section:not(.is-in) .mini-sticky,
+  .hero-whisper {
+    opacity: 1 !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}

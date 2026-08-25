@@ -1,0 +1,151 @@
+.fees-card {
+  max-width: 640px;
+  padding: 36px 34px 32px;
+  background: var(--bg-card);
+  border: 1px solid rgba(232, 195, 106, 0.28);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.fees-card-kicker {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+}
+
+.fees-amount {
+  margin: 10px 0 8px;
+  font-family: var(--display);
+  font-size: clamp(2rem, 4.2vw, 3.1rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.fees-amount span {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+.fees-lead {
+  max-width: 48ch;
+  color: var(--muted);
+}
+
+.fees-structure {
+  display: grid;
+  gap: 0;
+  margin: 26px 0 0;
+}
+
+.fees-structure div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+
+.fees-structure div:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.fees-structure dt {
+  color: var(--muted);
+}
+
+.fees-structure dd {
+  margin: 0;
+  text-align: right;
+  font-weight: 600;
+}
+
+.fees-includes-label {
+  margin-top: 26px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+}
+
+.fees-includes {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fees-includes li {
+  position: relative;
+  padding: 8px 0 8px 18px;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+}
+
+.fees-includes li:last-child {
+  border-bottom: 0;
+}
+
+.fees-includes li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 16px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.fees-note {
+  margin: 20px 0 24px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.fees-card .btn {
+  min-width: min(100%, 220px);
+}
+
+.fees-section:not(.is-in) .fees-card {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.fees-section.is-in .fees-card {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (max-width: 720px) {
+  .fees-card {
+    padding: 28px 22px 24px;
+  }
+
+  .fees-structure div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .fees-structure dd {
+    text-align: left;
+  }
+
+  .fees-card .btn {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fees-section:not(.is-in) .fees-card {
+    opacity: 1;
+    transform: none;
+  }
+}
