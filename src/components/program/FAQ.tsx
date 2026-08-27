@@ -63,7 +63,12 @@ export function FAQ() {
           {
             id: 'exams',
             question: 'Is this a replacement for Cambridge International examinations?',
-            answer: <p>No. You remain responsible for examination registration and fees.</p>,
+            answer: (
+              <p>
+                No, we&apos;ll help you register for your exams but you remain responsible for the
+                registration fee.
+              </p>
+            ),
           },
           {
             id: 'cost',

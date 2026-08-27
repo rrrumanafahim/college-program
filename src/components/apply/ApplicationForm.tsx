@@ -1,6 +1,8 @@
 import { useEffect, useState, type FormEvent } from 'react'
+import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input'
 import { Button } from '../ui/Button'
 import { submitApplication } from '../../lib/submitApplication'
+import 'react-phone-number-input/style.css'
 import './ApplicationForm.css'
 
 const INTERESTS = [
@@ -47,7 +49,6 @@ const empty: Values = {
 }
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const PHONE = /^[+\d][\d\s().-]{6,}$/
 const URL_PATTERN = /^https?:\/\/\S+$/i
 
 function validate(values: Values) {
@@ -55,7 +56,9 @@ function validate(values: Values) {
 
   if (values.fullName.trim().length < 2) errors.fullName = 'Enter your full name.'
   if (!EMAIL.test(values.email.trim())) errors.email = 'Enter a valid email address.'
-  if (!PHONE.test(values.phone.trim())) errors.phone = 'Enter a valid phone number.'
+  if (!values.phone || !isValidPhoneNumber(values.phone)) {
+    errors.phone = 'Enter a valid phone number for the selected country.'
+  }
 
   const age = Number(values.age)
   if (!values.age || Number.isNaN(age) || age < 14 || age > 25) {
@@ -122,6 +125,7 @@ export function ApplicationForm() {
     const honey = (event.currentTarget.elements.namedItem('company') as HTMLInputElement | null)
       ?.value
     if (honey) {
+      setValues(empty)
       setStatus('success')
       return
     }
@@ -149,7 +153,9 @@ export function ApplicationForm() {
           ? 'input[name="interests"]'
           : first === 'confirm'
             ? 'input[name="confirm"]'
-            : `[name="${first}"]`,
+            : first === 'phone'
+              ? '.PhoneInputInput'
+              : `[name="${first}"]`,
       )
       node?.focus()
       return
@@ -170,6 +176,8 @@ export function ApplicationForm() {
         motivation: values.motivation.trim(),
         portfolio: values.portfolio.trim(),
       })
+      setValues(empty)
+      setErrors({})
       setStatus('success')
     } catch {
       setStatus('error')
@@ -230,21 +238,29 @@ export function ApplicationForm() {
           <FieldError id="err-email" message={errors.email} />
         </label>
 
-        <label className="ap-field">
-          Phone Number *
-          <input
-            name="phone"
-            type="tel"
-            autoComplete="tel"
-            inputMode="tel"
-            value={values.phone}
-            onChange={(event) => set('phone', event.target.value)}
-            aria-invalid={Boolean(errors.phone)}
-            aria-describedby={errors.phone ? 'err-phone' : undefined}
-            required
+        <div className="ap-field">
+          <label id="phone-label" htmlFor="apply-phone">
+            Phone Number *
+          </label>
+          <PhoneInput
+            international
+            defaultCountry="PK"
+            countryCallingCodeEditable={false}
+            value={values.phone || undefined}
+            onChange={(value) => set('phone', value || '')}
+            numberInputProps={{
+              id: 'apply-phone',
+              name: 'phone',
+              autoComplete: 'tel',
+              'aria-labelledby': 'phone-label',
+              'aria-invalid': Boolean(errors.phone),
+              'aria-describedby': errors.phone ? 'err-phone' : undefined,
+              required: true,
+            }}
+            className={errors.phone ? 'ap-phone is-invalid' : 'ap-phone'}
           />
           <FieldError id="err-phone" message={errors.phone} />
-        </label>
+        </div>
 
         <label className="ap-field">
           Age *
@@ -393,7 +409,8 @@ export function ApplicationForm() {
 
       {status === 'error' ? (
         <p className="ap-banner" role="alert">
-          Something went wrong. Please try again.
+          Something went wrong. Please try again in a moment. If it keeps failing, email
+          info@hayth-ai.com.
         </p>
       ) : null}
 

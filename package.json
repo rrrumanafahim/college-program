@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "libphonenumber-js": "^1.13.12",
     "nodemailer": "^9.0.5",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "react-phone-number-input": "^3.4.18",
     "react-router-dom": "^7.18.2"
   },
   "devDependencies": {

@@ -68,12 +68,16 @@ export async function handleApplyRequest(req: IncomingMessage, res: ServerRespon
 
   try {
     await sendHaythMail({
-      subject: 'New Student Program Application',
+      subject: `New Application — ${application.fullName}`,
       replyTo: application.email,
       text: formatApplicationEmail(application),
     })
     send(res, 200, { ok: true })
-  } catch {
+  } catch (error) {
+    console.error('[apply] mail send failed')
+    if (error instanceof Error) {
+      console.error(`[apply] ${error.message}`)
+    }
     send(res, 500, { ok: false })
   }
 }

@@ -72,6 +72,58 @@
   color: var(--text);
 }
 
+.ap-phone {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  width: 100%;
+}
+
+.ap-phone .PhoneInputCountry {
+  margin: 0;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+}
+
+.ap-phone .PhoneInputCountryIcon {
+  width: 1.45em;
+  height: 1.05em;
+  box-shadow: none;
+  border: 1px solid rgba(201, 162, 74, 0.25);
+  border-radius: 2px;
+}
+
+.ap-phone .PhoneInputCountrySelectArrow {
+  color: var(--gold-ink);
+  opacity: 0.85;
+  border-color: var(--gold-ink);
+}
+
+.ap-phone .PhoneInputInput {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  outline: none;
+  color: var(--text);
+  font: inherit;
+}
+
+.ap-phone .PhoneInputInput:focus,
+.ap-phone .PhoneInputCountry:focus-within {
+  border-color: var(--gold);
+}
+
+.ap-phone.is-invalid .PhoneInputInput,
+.ap-phone.is-invalid .PhoneInputCountry {
+  border-color: #e8a39a;
+}
+
 .ap-field input:not([type='checkbox']):focus,
 .ap-field textarea:focus,
 .ap-field input:not([type='checkbox'])[aria-invalid='true'],

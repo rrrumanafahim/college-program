@@ -1,3 +1,5 @@
+import { isValidPhoneNumber } from 'libphonenumber-js'
+
 export type ApplicationInput = {
   fullName?: unknown
   email?: unknown
@@ -14,7 +16,6 @@ export type ApplicationInput = {
 }
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const PHONE = /^[+\d][\d\s().-]{6,}$/
 const URL_PATTERN = /^https?:\/\/\S+$/i
 
 export type ValidApplication = {
@@ -55,7 +56,7 @@ export function validateApplication(input: ApplicationInput): ValidApplication |
 
   if (fullName.length < 2) return null
   if (!EMAIL.test(email)) return null
-  if (!PHONE.test(phone)) return null
+  if (!phone || !isValidPhoneNumber(phone)) return null
   if (!age || Number.isNaN(ageNumber) || ageNumber < 14 || ageNumber > 25) return null
   if (school.length < 2) return null
   if (subjects.length < 3) return null
@@ -81,19 +82,22 @@ export function validateApplication(input: ApplicationInput): ValidApplication |
 }
 
 export function formatApplicationEmail(application: ValidApplication) {
+  const submittedAt = new Date().toISOString()
+
   return [
-    'STUDENT PROGRAM APPLICATION',
+    'NEW HAYTH PROGRAM APPLICATION',
     '',
     `Name: ${application.fullName}`,
     `Email: ${application.email}`,
     `Phone: ${application.phone}`,
     `Age: ${application.age}`,
-    `Study arrangement: ${application.school}`,
+    `How they are preparing: ${application.school}`,
     `O/A-Level Subjects: ${application.subjects}`,
-    `City/Country: ${application.location}`,
+    `City / Country: ${application.location}`,
     `Previous Experience: ${application.experience}`,
     `Areas of Interest: ${application.interests}`,
     `Why They Want to Join: ${application.motivation}`,
-    `Portfolio/GitHub: ${application.portfolio || 'Not provided'}`,
+    `Portfolio / GitHub: ${application.portfolio || 'Not provided'}`,
+    `Submitted At: ${submittedAt}`,
   ].join('\n')
 }

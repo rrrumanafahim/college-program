@@ -946,6 +946,34 @@ p {
   color: var(--muted);
 }
 
+.legal-body h2 {
+  margin: 12px 0 0;
+  font-family: var(--display);
+  font-size: 1.35rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.legal-body h3 {
+  margin: 4px 0 0;
+  font-family: var(--display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.legal-body ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: grid;
+  gap: 6px;
+}
+
+.legal-body li {
+  line-height: 1.5;
+}
+
 .legal-body a {
   color: var(--gold-ink);
   text-decoration: underline;
